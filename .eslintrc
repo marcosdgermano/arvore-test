@@ -1,0 +1,103 @@
+{
+  "extends": ["eslint:recommended", "google", "plugin:react/recommended"],
+  "plugins": ["react", "prettier", "import", "react-hooks"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 11,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "mocha": true,
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "reportUnusedDisableDirectives": true,
+  "rules": {
+    "react/display-name": "off",
+    "no-debugger": "off",
+    "indent": "off",
+    "no-useless-escape": "off",
+    "no-case-declarations": "warn",
+    "require-jsdoc": "off",
+    "max-len": "off",
+    "new-cap": "off",
+    "multiline-ternary": ["error", "never"],
+    "react/jsx-no-undef": "error",
+    "no-else-return": "error",
+    "no-lonely-if": "error",
+    "quote-props": ["error", "as-needed"],
+    "curly": [2, "all"],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "max-lines-per-function": [
+      "error",
+      { "max": 70, "skipBlankLines": true, "skipComments": true }
+    ],
+    "max-statements": ["error", 15],
+    "max-depth": ["error", 2],
+    "react/jsx-uses-react": "error",
+    "react/no-unused-state": ["error"],
+    "react/jsx-max-depth": ["error", { "max": 5 }],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      { "props": "never", "children": "never" }
+    ],
+    "react/prop-types": "off",
+    "react/jsx-uses-vars": "error",
+    "jsx-quotes": ["error", "prefer-double"],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "react/self-closing-comp": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "comma-dangle": "off",
+    "space-after-keywords": "off",
+    "space-before-function-paren": "off",
+    "semi": "off",
+    "object-curly-spacing": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "import/first": ["error"],
+    "import/newline-after-import": ["error"],
+    "import/order": ["error", { "groups": ["builtin", "external"] }],
+    "prettier/prettier": [
+      "error",
+      { "trailingComma": "es5", "arrowParens": "avoid", "singleQuote": true, "printWidth": 120 }
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 1,
+        "maxEOF": 1
+      }
+    ],
+    "prefer-template": "error",
+    "react/no-array-index-key": "error",
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error"
+  }
+}
