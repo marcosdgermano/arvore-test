@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     // project options
     "lib": [
       "ESNext",
@@ -31,5 +32,5 @@
     "noUnusedLocals": true, // Report errors on unused local variables.
     "noUnusedParameters": true // Report errors on unused parameters in functions
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "./**/*.tsx"],
 }
