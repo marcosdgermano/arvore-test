@@ -1,15 +1,17 @@
 import React from 'react';
-import { useBooksList } from '../../services/books';
+import Carousel from '@components/carousel';
 
 export const Home = () => {
-  const { result, loading, error } = useBooksList('aventura');
-  console.log('result >>>>>', result)
-
-  if (loading) return <div>loading</div>;
-
-  if (error) return <div>error</div>;
-
-  return <div>Home{result.length}</div>;
+  return (
+    <>
+      <div>Home</div>
+      <Carousel searchTerm='aventura' />
+      &nbsp;
+      <Carousel searchTerm='destaques' />
+      &nbsp;
+      <Carousel searchTerm='ação' />
+    </>
+  );
 };
 
 export default Home;
