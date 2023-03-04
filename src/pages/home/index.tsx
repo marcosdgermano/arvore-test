@@ -6,9 +6,7 @@ export const Home = () => {
     <>
       <div>Home</div>
       <Carousel searchTerm='aventura' />
-      &nbsp;
-      <Carousel searchTerm='destaques' />
-      &nbsp;
+      <Carousel searchTerm='destaques' ishighlighted />
       <Carousel searchTerm='ação' />
     </>
   );

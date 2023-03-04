@@ -19,7 +19,6 @@ export const Card = ({ card }: BookCardProps): JSX.Element => {
 const CardImage = styled.img`
   width: 170px;
   height: 255px;
-  padding-right: 45px;
 `;
 
 export default Card;

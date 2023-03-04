@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto';
     background-color: #f5f5f5;
   }
+
+  h2, ul, li, button {
+    all: unset
+  }
 `;
 
 export default GlobalStyle;
