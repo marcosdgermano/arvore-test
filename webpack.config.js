@@ -35,6 +35,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components/'),
+      '@services': path.resolve(__dirname, 'src/services/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
     },
   },
   devServer: {

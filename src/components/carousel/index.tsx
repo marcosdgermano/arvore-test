@@ -6,10 +6,10 @@ import { useBooksList } from '../../services/books';
 
 export interface CarouselProps {
   searchTerm: string,
-  ishighlighted?: boolean
+  isHighlighted?: boolean
 }
 
-export const Carousel = ({ searchTerm, ishighlighted = false }: CarouselProps): JSX.Element => {
+export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): JSX.Element => {
   const { result, loading, error } = useBooksList(searchTerm);
   const carouselRef = useRef<HTMLUListElement>(null);
 
@@ -27,9 +27,9 @@ export const Carousel = ({ searchTerm, ishighlighted = false }: CarouselProps): 
   }
 
   return (
-    <Row ishighlighted={ishighlighted}>
+    <Row isHighlighted={isHighlighted}>
       <SectionWrapper>
-        <Title ishighlighted={ishighlighted}>{capitalizeFirstLetter(searchTerm)}</Title>
+        <Title isHighlighted={isHighlighted}>{capitalizeFirstLetter(searchTerm)}</Title>
 
         <CarouselWrapper>
           <StyledButton onClick={() => move(-1)}>
@@ -52,7 +52,7 @@ export const Carousel = ({ searchTerm, ishighlighted = false }: CarouselProps): 
 };
 
 type StyleProps = {
-  ishighlighted: boolean
+  isHighlighted: boolean
 }
 
 const Title = styled.h2<StyleProps>`
@@ -60,7 +60,7 @@ const Title = styled.h2<StyleProps>`
   font-weight: bold;
   margin-bottom: 30px;
 
-  ${({ ishighlighted }) => ishighlighted && 'color: #A977D8; font-size: 1.5em;'}
+  ${({ isHighlighted }) => isHighlighted && 'color: #A977D8; font-size: 1.5em;'}
 `
 
 const CarouselWrapper = styled.div`
@@ -86,7 +86,7 @@ const StyledButton = styled.button`
 
 const Row = styled.div<StyleProps>`
   margin-top: 45px;
-  ${({ ishighlighted }) => ishighlighted && 'background-color: #DAF6F3;  padding: 35px 0;'}
+  ${({ isHighlighted }) => isHighlighted && 'background-color: #DAF6F3;  padding: 35px 0;'}
 `
 
 const SectionWrapper = styled.div`

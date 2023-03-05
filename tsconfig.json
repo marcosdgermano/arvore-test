@@ -13,6 +13,8 @@
     "moduleResolution": "node", 
     "paths": {
       "@components/*": ["src/components/*"],
+      "@services/*": ["src/services/*"],
+      "@pages/*": ["src/pages/*"],
     }, 
     "sourceMap": true, 
     "sourceRoot": "/", 
