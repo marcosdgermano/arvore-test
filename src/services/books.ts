@@ -1,29 +1,12 @@
 import {useState, useEffect} from 'react';
 import axios from '../utils/axios';
-import { BookEntity } from 'types';
+import { filterBooks } from '@services/filters';
+import { BookEntity } from 'types/books';
+import { FiltersType } from 'types/filters';
 
 type AdditionalParamsType = {
   startIndex?: number,
   maxResults?: number,
-}
-
-type FiltersType = {
-  download?: 'pdf' | 'epub',
-  saleability?: 'NOT_FOR_SALE' | 'FOR_SALE'
-}
-
-const parseBooks = (books: Array<BookEntity>, filters: FiltersType) => {
-  let parsedBooks = books;
-  const { download, saleability } = filters;
-  if (download) {
-    parsedBooks = parsedBooks.filter(book => book.accessInfo[download].isAvailable)
-  }
-
-  if (saleability) {
-    parsedBooks = parsedBooks.filter(book => book.saleInfo.saleability === saleability)
-  }
-
-  return parsedBooks;
 }
 
 export const useBooksList = (searchTerm: string, additionalParams?: AdditionalParamsType, filters?: FiltersType) => {
@@ -37,11 +20,12 @@ export const useBooksList = (searchTerm: string, additionalParams?: AdditionalPa
       .then(response => {
         let books;
         if (filters) {
-          books = parseBooks(response.data.items, filters);
+          books = filterBooks(response.data.items, filters);
         } else {
           books = response.data.items;
         }
 
+        console.log('result >>>>>>', books);
         setResult(books)
       })
       .catch(error => setError(error))

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Card from '@components/card';
-import { capitalizeFirstLetter } from '../../helpers';
-import { useBooksList } from '../../services/books';
+import { capitalizeFirstLetter } from '@utils/helpers';
+import { useBooksList } from '@services/books';
 
 export interface CarouselProps {
   searchTerm: string,

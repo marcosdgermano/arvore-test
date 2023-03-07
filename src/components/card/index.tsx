@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BookEntity } from 'types';
+import { BookEntity } from 'types/books';
 
 export interface BookCardProps {
   card: BookEntity,

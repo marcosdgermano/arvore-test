@@ -1,19 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import Card from '@components/card';
+import Filters from '@components/filters';
 import { useBooksList } from '@services/books';
+import { useFilters } from '@services/filters';
 
 export const Search = () => {
-  const { result, loading, error } = useBooksList('menino', { maxResults: 40 }, { saleability: 'NOT_FOR_SALE' });
+  const history = useHistory();
+  const { selectedFilters, allFilters } = useFilters(history.location.search);
+  const { result, loading, error } = useBooksList('menino', { maxResults: 40 }, selectedFilters);
 
   if (loading) return <div>loading</div>;
 
-  if (error) return <div>error</div>;
+  if (error || !result) return <div>error</div>;
 
   return (
     <PageWrapper>
       <FiltersWrapper>
         <h2>Filtros</h2>
+        <Filters filters={allFilters} />
       </FiltersWrapper>
       <ListWrapper>
         <h2>Resultados para "menino"</h2>
@@ -36,10 +42,15 @@ const PageWrapper = styled.div`
 `;
 
 const FiltersWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-basis: 25%;
+  padding-right: 50px;
 `;
 
 const ListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-basis: 75%;
 `;
 
@@ -51,6 +62,6 @@ const StyledList = styled.ul`
 const StyledItem = styled.li`
   flex: 1 0 20%;
   padding-bottom: 20px;
-`
+// `
 
 export default Search;
