@@ -38,7 +38,7 @@ export const Search = () => {
 const PageWrapper = styled.div`
   display: flex;
   width: 950px;
-  margin: 50px auto 0;
+  margin: 50px auto;
 `;
 
 const FiltersWrapper = styled.div`
