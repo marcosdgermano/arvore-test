@@ -20,10 +20,6 @@ const Checkbox = ({link, value, checked}: CheckboxProps): JSX.Element => {
 
 const Link = styled.a`
   margin-bottom: 10px;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const StyledCheckbox = styled.span<{checked: boolean}>`

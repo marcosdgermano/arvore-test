@@ -5,10 +5,13 @@ import { history } from './utils/history';
 import { Router, Route, Switch } from 'react-router-dom';
 import Home from '@pages/home';
 import Search from '@pages/search';
+import Header from '@components/header';
+import Footer from '@components/footer';
 
 const App = () => (
   <Router history={history}>
     <GlobalStyle />
+    <Header />
     <Switch>
       <Route
         path="/"
@@ -21,6 +24,7 @@ const App = () => (
         render={() => <Search />}
       />
     </Switch>
+    <Footer />
   </Router>
 );
 

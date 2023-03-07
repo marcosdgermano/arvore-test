@@ -60,7 +60,6 @@ const CleanButton = styled.a`
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
-  cursor: pointer;
 
   color: #F1F7FC;
   font-weight: bold;

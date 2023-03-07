@@ -5,8 +5,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: 'Roboto';
     background-color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a, h2, ul, li, button {
@@ -19,8 +21,8 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom: 30px;
   }
 
-  a, h1, h2, p, span, label {
-    font-family: 'Inter', sans-serif;
+  a {
+    cursor: pointer;
   }
 `;
 
