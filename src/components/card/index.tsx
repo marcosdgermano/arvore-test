@@ -17,16 +17,20 @@ export const Card = ({ card, isGridStyled }: BookCardProps): JSX.Element => {
 };
 
 const CardImage = styled.img<{ isGridStyled?: boolean }>`
-  /* aspect-ratio: 1 / 1.5; */
   width: 113px; height: 170px;
 
-  @media (max-width: 769px) and (min-width: 542px) {
+  @media (max-width: 769px) {
     width: 146px; height: 221px;
   }
 
-  @media (max-width: 541px) {
+  /* @media (max-width: 541px) {
     width: 57px; height: 85px;
   }
+
+  @media (max-width: 541px) {
+    width: 68px; height: 102px;
+    width: 146px; height: 221px;
+  } */
 `;
 
 export default Card;

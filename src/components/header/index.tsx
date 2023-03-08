@@ -126,6 +126,9 @@ const MobileInputWrapper = styled.div`
 
   @media (max-width: 541px) {
     display: flex;
+    padding: 20px;
+    background-color: #FFF;
+    border-top: 1px solid #F1F7FC;
   }
 `;
 

@@ -88,6 +88,10 @@ const PageWrapper = styled.div`
   @media (max-width: 769px) {
     padding: 0 70px;
   }
+
+  @media (max-width: 541px) {
+    padding: 0 30px;
+  }
 `;
 
 const FiltersWrapper = styled.div`
@@ -104,6 +108,10 @@ const FiltersWrapper = styled.div`
     flex-basis: 30%;
     padding-right: 25px;
   }
+
+  @media (max-width: 541px) {
+    display: none;
+  }
 `;
 
 const ListWrapper = styled.div`
@@ -111,8 +119,13 @@ const ListWrapper = styled.div`
   flex-direction: column;
   flex-basis: 75%;
 
-  @media (max-width: 769px) {
+  /* @media (max-width: 769px) {
     flex-basis: 30%;
+  } */
+
+  @media (max-width: 541px) {
+    flex-basis: 100%;
+    align-items: center;
   }
 `;
 
