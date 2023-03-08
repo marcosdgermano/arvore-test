@@ -13,19 +13,60 @@ const Header = (): JSX.Element => {
   }
 
   return (
+    <header>
     <StyledHeader>
-      <LogoWrapper>
-        <a href='/'><img src='/public/assets/logo.png' /></a>
-      </LogoWrapper>
-      <StyledInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
+      <StyledLogo href='/'><img src='/public/assets/logo.png' /></StyledLogo>
+      <StyledDesktopInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
       <StyledProfile>
+        <ProfileNotification>
+          <img src='/public/assets/notification.png' />
+        </ProfileNotification>
         <ProfileImg src='/public/assets/profile_img.png' />
         <ProfileName>alessandra</ProfileName>
-        <img src='/public/assets/arrow_icon.png'/>
+        <ProfileArrow src='/public/assets/arrow_icon.png'/>
       </StyledProfile>
     </StyledHeader>
+    <MobileInputWrapper>
+      <StyledMobileInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
+    </MobileInputWrapper>
+    </header>
   )
 }
+
+const ProfileNotification = styled.span`
+  display: none;
+  @media (max-width: 769px) {
+    display: block;
+    margin: 0 20px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #FF5267;
+      border: 1px solid #fff;
+      top: -5px;
+      right: -3px;
+    }
+  }
+`;
+
+const StyledLogo = styled.a`
+  padding-left: 20px;
+  flex: 2 2 20%;
+
+  @media (max-width: 769px) {
+    & > img {
+      width: 100px;
+      height: auto;
+      padding-right: 20px;
+    }
+  }
+`;
 
 const StyledProfile = styled.div`
   display: flex;
@@ -39,13 +80,27 @@ const StyledProfile = styled.div`
 const ProfileImg = styled.img`
   border-radius: 20px;
   margin-right: 20px;
+
+  @media (max-width: 769px) {
+   margin: 0;
+  }
 `;
 
 const ProfileName = styled.span`
   margin-right: 10px;
   font-weight: bold;
   color:#406A76;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
 `;
+
+const ProfileArrow = styled.img`
+  @media (max-width: 769px) {
+    display: none;
+  }
+`
 
 const StyledInput = styled.input`
   max-width: 1000px;
@@ -57,12 +112,24 @@ const StyledInput = styled.input`
   padding:10px;
 `
 
-const LogoWrapper = styled.div`
-  padding-left: 20px;
-  flex: 2 2 20%;
+const StyledDesktopInput = styled(StyledInput)`
+  @media (max-width: 541px) {
+    display: none;
+  }
 `;
 
-const StyledHeader = styled.header`
+const StyledMobileInput = styled(StyledInput)`
+`;
+
+const MobileInputWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 541px) {
+    display: flex;
+  }
+`;
+
+const StyledHeader = styled.div`
   background: #FFFFFF;
   height: 65px;
   box-shadow: 0px 4px 5px rgba(5, 59, 75, 0.06);

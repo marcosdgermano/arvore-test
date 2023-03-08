@@ -5,15 +5,23 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <StyledFooter>
-        <Copyright>Copyright © 2021 Árvore. Todos os direitos reservados.</Copyright>
-        <div>
+        <Copyright>
+          <span>Copyright © 2021 Árvore.</span> <span>Todos os direitos reservados.</span>
+        </Copyright>
+        <ButtonsWrapper>
           <FooterButton>Política de privacidade</FooterButton>
           <FooterButton>Ajuda</FooterButton>
-        </div>
+        </ButtonsWrapper>
       </StyledFooter>
     </FooterWrapper>
   )
 }
+
+const ButtonsWrapper = styled.div`
+  @media (max-width: 541px) {
+    display: none;
+  }
+`;
 
 const FooterButton = styled.a`
   padding: 10px 16px;
@@ -24,25 +32,40 @@ const FooterButton = styled.a`
   border-radius: 10px;
 `;
 
-const Copyright = styled.span`
+const Copyright = styled.p`
   font-size: 12.8px;
   color: #B2B4B9;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 541px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const StyledFooter = styled.div`
-  width: 950px;
+  max-width: 950px;
   height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 541px) {
+    justify-content: center;
+  }
 `;
 
 const FooterWrapper = styled.footer`
   background: #FFFFFF;
   border: 0.5px solid #D9D9D9;
   height: 75px;
+
+  @media (max-width: 769px) {
+    padding: 0 50px;
+  }
 `;
 
 export default Footer;

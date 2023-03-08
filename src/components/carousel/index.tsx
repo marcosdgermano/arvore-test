@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import Card from '@components/card';
-import { capitalizeFirstLetter } from '@utils/helpers';
+import { capitalizeFirstLetter, getImgLink } from '@utils/helpers';
 import { requestBooks } from '@services/books';
 import { BookEntity } from 'types/books';
 
@@ -52,7 +51,6 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
     <Row isHighlighted={isHighlighted}>
       <SectionWrapper>
         <Title isHighlighted={isHighlighted}>{capitalizeFirstLetter(searchTerm)}</Title>
-
         <CarouselWrapper>
           <StyledButton onClick={() => move(-1)}>
             <img src="/public/assets/arrow-button.png"/>
@@ -60,7 +58,7 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
           <CardsWrapper key={searchTerm} ref={carouselRef}>
             { books.map(card => (
               <ListItem key={card.id}>
-                <Card card={card} />
+                <BookImg src={getImgLink(card)} />
               </ListItem>
             )) }
           </CardsWrapper>
@@ -77,12 +75,28 @@ type StyleProps = {
   isHighlighted: boolean
 }
 
+const BookImg = styled.img`
+  width: 170px; height: 255px;
+
+  @media (max-width: 769px) {
+    width: 124px; height: 185px;
+  }
+
+  @media (max-width: 541px) {
+    width: 62px; height: 92px;
+  }
+`;
+
 const Title = styled.h2<StyleProps>`
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 30px;
 
   ${({ isHighlighted }) => isHighlighted && 'color: #A977D8; font-size: 1.5em;'}
+
+  @media (max-width: 541px) {
+    padding-left: 15px;
+  }
 `
 
 const CarouselWrapper = styled.div`
@@ -93,10 +107,20 @@ const CarouselWrapper = styled.div`
 const CardsWrapper = styled.ul`
   display: flex;
   overflow-x: hidden;
+
+  @media (max-width: 769px) {
+    overflow-x: auto;
+  }
 `;
 
 const ListItem = styled.li`
   flex: 1 0 22%;
+  
+  @media (max-width: 541px) {
+    &:first-child {
+      padding-left: 15px;
+    }
+  }
 `
 
 const StyledButton = styled.button`
@@ -104,6 +128,10 @@ const StyledButton = styled.button`
   z-index: 1;
   height: fit-content;
   transform: scaleX(-1);
+
+  @media (max-width: 769px) {
+    display: none;
+  }
 `;
 
 const Row = styled.div<StyleProps>`
@@ -116,6 +144,16 @@ const SectionWrapper = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 950px;
+
+  @media (max-width: 769px) {
+    width: auto;
+    padding: 0 55px;
+  }
+
+  @media (max-width: 541px) {
+    width: auto;
+    padding: 0;
+  }
 `;
 
 export default Carousel;

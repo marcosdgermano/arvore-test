@@ -1,4 +1,5 @@
 import queryString from "query-string";
+import { BookEntity } from 'types/books'
 
 export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -23,4 +24,9 @@ export const filtersDictionary: { [index: string]: string } = {
   '31~50': 'de R$31 até R$50',
   '51~100': 'de R$51 até R$100',
   '100': 'Mais de R$100'
+}
+
+export function getImgLink(book: BookEntity) {
+  const { imageLinks } = book.volumeInfo;
+  return imageLinks?.thumbnail || imageLinks?.smallThumbnail  || '/public/assets/sem-capa.png';
 }
