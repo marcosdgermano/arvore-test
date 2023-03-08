@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Card from '@components/card';
 import { capitalizeFirstLetter } from '@utils/helpers';
-import { useBooksList } from '@services/books';
+import { requestBooks } from '@services/books';
+import { BookEntity } from 'types/books';
 
 export interface CarouselProps {
   searchTerm: string,
@@ -10,8 +11,29 @@ export interface CarouselProps {
 }
 
 export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): JSX.Element => {
-  const { result, loading, error } = useBooksList(searchTerm);
+  const [books, setBooks] = useState<BookEntity[]>([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const carouselRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const fetch = async () => {
+      if(loading) return
+  
+      setLoading(true);
+      const { result, error } = await requestBooks(searchTerm)
+  
+      if (error) {
+        setError(error);
+      } else {
+        setBooks(result);
+      }
+  
+      setLoading(false);
+    }
+
+    fetch();
+  }, [searchTerm])
 
   if (loading) return <div>loading</div>;
 
@@ -36,7 +58,7 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
             <img src="/public/assets/arrow-button.png"/>
           </StyledButton>
           <CardsWrapper key={searchTerm} ref={carouselRef}>
-            { result.map(card => (
+            { books.map(card => (
               <ListItem key={card.id}>
                 <Card card={card} />
               </ListItem>

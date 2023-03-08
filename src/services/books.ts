@@ -1,7 +1,5 @@
-import {useState, useEffect} from 'react';
 import axios from '../utils/axios';
 import { filterBooks } from '@services/filters';
-import { BookEntity } from 'types/books';
 import { FiltersType } from 'types/filters';
 
 type AdditionalParamsType = {
@@ -9,28 +7,19 @@ type AdditionalParamsType = {
   maxResults?: number,
 }
 
-export const useBooksList = (searchTerm: string, additionalParams?: AdditionalParamsType, filters?: FiltersType) => {
-  const [result, setResult] = useState<Array<BookEntity>>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<any>(null);
+export const requestBooks = async (searchTerm: string, additionalParams?: AdditionalParamsType, filters?: FiltersType) => {
+  try {
+    const response = await axios.get('/volumes', { params: { q: searchTerm, ...additionalParams } });
+    let books;
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get('/volumes', { params: { q: searchTerm, ...additionalParams } })
-      .then(response => {
-        let books;
-        if (filters) {
-          books = filterBooks(response.data.items, filters);
-        } else {
-          books = response.data.items;
-        }
+    if (filters) {
+      books = filterBooks(response.data.items, filters);
+    } else {
+      books = response.data.items;
+    }
 
-        console.log('result >>>>>>', books);
-        setResult(books)
-      })
-      .catch(error => setError(error))
-      .finally(() => setLoading(false))
-  }, [searchTerm]);
-
-  return {result, loading, error};
+    return { result: books, error: null };
+  } catch (error) {
+    return { result: [], error }
+  }
 }

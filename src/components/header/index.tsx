@@ -8,7 +8,7 @@ const Header = (): JSX.Element => {
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      history.push(`/search?q=${term}`)
+      history.replace(`/search?q=${term}`)
     }
   }
 
