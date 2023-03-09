@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "dev": "webpack serve --hot --mode development",
     "build": "webpack",
     "test:lint": "eslint src/**/*.js"
