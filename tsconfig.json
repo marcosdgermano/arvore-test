@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": [
       "ESNext",
       "dom"
-    ], 
+    ],
+    "types": ["node", "jest"],
     "outDir": "lib", 
     "removeComments": true, 
     "target": "ES6", 
@@ -28,5 +29,5 @@
     "noUnusedLocals": true, 
     "noUnusedParameters": true 
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx", "src/components/header/index.spec.js", "src/utils/test-utilities.js", "src/utils/test-utilities.js", "src/components/carousel/index.spec.js"],
 }

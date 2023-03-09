@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { capitalizeFirstLetter, getImgLink } from '@utils/helpers';
 import { requestBooks } from '@services/books';
@@ -85,7 +85,7 @@ type StyleProps = {
   isHighlighted?: boolean
 }
 
-const BookImg = styled.img`
+const BookImg = styled.img.attrs({ className: 'BookImg' })`
   width: 170px; height: 255px;
 
   @media (max-width: 769px) {
@@ -114,7 +114,7 @@ const CarouselWrapper = styled.div`
   align-items: center;
 `;
 
-const CardsWrapper = styled.ul`
+const CardsWrapper = styled.ul.attrs({ className: 'CardsWrapper' })`
   display: flex;
   overflow-x: hidden;
 
@@ -130,7 +130,7 @@ const CardsWrapper = styled.ul`
   }
 `;
 
-const ListItem = styled.li`
+const ListItem = styled.li.attrs({ className: 'ListItem' })`
   flex: 1 0 22%;
   
   @media (max-width: 541px) {
@@ -140,7 +140,7 @@ const ListItem = styled.li`
   }
 `
 
-const StyledButton = styled.button`
+const StyledButton = styled.button.attrs({ className: 'StyledButton' })`
   margin: 0 -20px;
   z-index: 1;
   height: fit-content;
@@ -173,7 +173,7 @@ const SectionWrapper = styled.div`
   }
 `;
 
-const Error = styled.div`
+const Error = styled.div.attrs({ className: 'Error' })`
   height: 10vh;
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,21 +14,21 @@ const Header = (): JSX.Element => {
 
   return (
     <header>
-    <StyledHeader>
-      <StyledLogo href='/'><img src='/public/assets/logo.png' /></StyledLogo>
-      <StyledDesktopInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
-      <StyledProfile>
-        <ProfileNotification>
-          <img src='/public/assets/notification.png' />
-        </ProfileNotification>
-        <ProfileImg src='/public/assets/profile_img.png' />
-        <ProfileName>alessandra</ProfileName>
-        <ProfileArrow src='/public/assets/arrow_icon.png'/>
-      </StyledProfile>
-    </StyledHeader>
-    <MobileInputWrapper>
-      <StyledMobileInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
-    </MobileInputWrapper>
+      <StyledHeader>
+        <StyledLogo href='/'><img src='/public/assets/logo.png' /></StyledLogo>
+        <StyledDesktopInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
+        <StyledProfile>
+          <ProfileNotification>
+            <img src='/public/assets/notification.png' />
+          </ProfileNotification>
+          <ProfileImg src='/public/assets/profile_img.png' />
+          <ProfileName>alessandra</ProfileName>
+          <ProfileArrow src='/public/assets/arrow_icon.png'/>
+        </StyledProfile>
+      </StyledHeader>
+      <MobileInputWrapper>
+        <StyledMobileInput onChange={(event) => setTerm(event.target.value)} onKeyDown={handleKeyDown} />
+      </MobileInputWrapper>
     </header>
   )
 }
@@ -55,7 +55,7 @@ const ProfileNotification = styled.span`
   }
 `;
 
-const StyledLogo = styled.a`
+const StyledLogo = styled.a.attrs({ className: 'StyledLogo' })`
   padding-left: 20px;
   flex: 2 2 20%;
 
@@ -112,7 +112,7 @@ const StyledInput = styled.input`
   padding:10px;
 `
 
-const StyledDesktopInput = styled(StyledInput)`
+const StyledDesktopInput = styled(StyledInput).attrs({ className: 'StyledDesktopInput' })`
   @media (max-width: 541px) {
     display: none;
   }
@@ -132,7 +132,7 @@ const MobileInputWrapper = styled.div`
   }
 `;
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.div.attrs({ className: 'StyledHeader' })`
   background: #FFFFFF;
   height: 65px;
   box-shadow: 0px 4px 5px rgba(5, 59, 75, 0.06);
@@ -141,4 +141,5 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 export default Header;

@@ -1,16 +1,14 @@
-import React from "react";
 import styled from "styled-components";
 
 const Loading = (): JSX.Element => {
-  const Spinner = () => (<SpinnerRing><div></div><div></div><div></div><div></div></SpinnerRing>);
   return(
     <LoadingWrapper>
-      <Spinner />
+      <SpinnerRing><div></div><div></div><div></div><div></div></SpinnerRing>
     </LoadingWrapper>
   )
 }
 
-const LoadingWrapper = styled.div`
+const LoadingWrapper = styled.div.attrs({ className: 'Loading' })`
   display: block;
   position: absolute;
   width: 100vw;

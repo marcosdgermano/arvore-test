@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import GlobalStyle from './utils/global-style';
 import { history } from './utils/history';

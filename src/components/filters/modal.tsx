@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Checkbox from '@components/checkbox';
 import { FilterObject } from "types/filters";
@@ -108,7 +108,7 @@ const ContentWrapper = styled.div`
   padding: 30px;
 `;
 
-const ModalWrapper = styled.div<{ visible: boolean }>`
+const ModalWrapper = styled.div.attrs({ className: 'ModalWrapper' })<{ visible: boolean }>`
   display: none;
   position: fixed;
   top: 0;

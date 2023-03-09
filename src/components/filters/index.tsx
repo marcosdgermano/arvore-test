@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import queryString from "query-string";
@@ -16,6 +15,7 @@ const Filters = ({ filters, cleanFilters }: FiltersProps): JSX.Element => {
 
   const getLink = (name: string, value: string) => {
     const qs = queryString.parse(history.location.search, { arrayFormat: 'separator' })
+    console.log('>>>>>>', qs);
 
     if (qs[name] === value) {
       delete qs[name];
@@ -52,7 +52,7 @@ const Label = styled.span`
   margin-bottom: 10px;
 `;
 
-const CleanButton = styled.a`
+const CleanButton = styled.a.attrs({ className: 'CleanButton' })`
   height: 47px;
   background: #ADB7BF;
   border: 1px solid rgba(64, 106, 118, 0.2);

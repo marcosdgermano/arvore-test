@@ -1,13 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Footer = () => {
   return (
     <FooterWrapper>
       <StyledFooter>
-        <Copyright>
+        <CopyrightText>
           <span>Copyright © 2021 Árvore.</span> <span>Todos os direitos reservados.</span>
-        </Copyright>
+        </CopyrightText>
         <ButtonsWrapper>
           <FooterButton>Política de privacidade</FooterButton>
           <FooterButton>Ajuda</FooterButton>
@@ -23,7 +22,7 @@ const ButtonsWrapper = styled.div`
   }
 `;
 
-const FooterButton = styled.a`
+const FooterButton = styled.a.attrs({ className: 'FooterButton' })`
   padding: 10px 16px;
   margin-left: 10px;
   background: #FFFFFF;
@@ -32,7 +31,7 @@ const FooterButton = styled.a`
   border-radius: 10px;
 `;
 
-const Copyright = styled.p`
+const CopyrightText = styled.p.attrs({ className: 'CopyrightText' })`
   font-size: 12.8px;
   color: #B2B4B9;
   display: flex;

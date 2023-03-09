@@ -10,13 +10,6 @@
     ]
   ],
   "plugins": [
-    "@babel/plugin-transform-react-jsx",
-    [
-      "babel-plugin-styled-components",
-      {
-        "displayName": true,
-        "fileName": false
-      }
-    ]
+    "@babel/plugin-transform-react-jsx"
   ]
 }

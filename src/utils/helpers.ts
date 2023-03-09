@@ -1,4 +1,4 @@
-import queryString from "query-string";
+import queryString from 'query-string';
 import { BookEntity } from 'types/books'
 
 export function capitalizeFirstLetter(string: string): string {

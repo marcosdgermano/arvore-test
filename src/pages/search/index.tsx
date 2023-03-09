@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import queryString from 'query-string';
@@ -20,10 +20,6 @@ export const Search = () => {
   const { selectedFilters, allFilters } = useFilters(history.location.search);
   const searchTerm = queryString.parse(history.location.search).q as string || '';
   const hasSelectedFilters = !!Object.keys(selectedFilters).length;
-
-  useEffect(() => {
-    console.log(loading);
-  }, [loading])
 
   const fetch = async (refetch?: boolean) => {
     if(loading) return
@@ -121,7 +117,7 @@ const PageWrapper = styled.div`
   }
 `;
 
-const FiltersWrapper = styled.div`
+const FiltersWrapper = styled.div.attrs({ className: 'FiltersWrapper' })`
   display: flex;
   flex-direction: column;
   flex-basis: 25%;
@@ -141,7 +137,7 @@ const FiltersWrapper = styled.div`
   }
 `;
 
-const ListWrapper = styled.div`
+const ListWrapper = styled.div.attrs({ className: 'ListWrapper' })`
   display: flex;
   flex-direction: column;
   flex-basis: 75%;
@@ -152,7 +148,7 @@ const ListWrapper = styled.div`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledList = styled.ul.attrs({ className: 'StyledList' })`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 10px;
@@ -166,7 +162,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledItem = styled.li`
+const StyledItem = styled.li.attrs({ className: 'StyledItem' })`
   @media (max-width: 769px) {
     width: fit-content;
   }
@@ -199,7 +195,7 @@ const StyledButton = styled.button<{ primary?: boolean }>`
   }
 `;
 
-const Error = styled.div`
+const Error = styled.div.attrs({ className: 'Error' })`
   width: 100%;
   height: 75vh;
   display: flex;
