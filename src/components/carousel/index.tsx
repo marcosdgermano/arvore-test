@@ -110,6 +110,13 @@ const CardsWrapper = styled.ul`
 
   @media (max-width: 769px) {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 

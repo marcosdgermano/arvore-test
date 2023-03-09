@@ -3,12 +3,23 @@ import styled, { css } from "styled-components";
 import { filtersDictionary } from "@utils/helpers";
 
 export interface CheckboxProps {
-  link: string,
-  checked: boolean,
-  value: string
+  link?: string,
+  checked?: boolean,
+  value: string,
+  onSelect?: () => void
 } 
 
-const Checkbox = ({link, value, checked}: CheckboxProps): JSX.Element => {
+const Checkbox = ({link, value, checked, onSelect}: CheckboxProps): JSX.Element => {
+  if (onSelect) {
+    return (
+      <StyledDiv onClick={onSelect}>
+        <StyledCheckbox checked={checked}>
+          { filtersDictionary[value] }
+        </StyledCheckbox>
+      </StyledDiv>
+    )
+  }
+
   return (
     <Link href={link}>
       <StyledCheckbox checked={checked}>
@@ -22,7 +33,11 @@ const Link = styled.a`
   margin-bottom: 10px;
 `;
 
-const StyledCheckbox = styled.span<{checked: boolean}>`
+const StyledDiv = styled.div`
+  margin-bottom: 10px;
+`;
+
+const StyledCheckbox = styled.span<{checked?: boolean}>`
   padding-left: 1.5rem;
   display: inline-block;
   position: relative;
