@@ -15,7 +15,6 @@ const Filters = ({ filters, cleanFilters }: FiltersProps): JSX.Element => {
 
   const getLink = (name: string, value: string) => {
     const qs = queryString.parse(history.location.search, { arrayFormat: 'separator' })
-    console.log('>>>>>>', qs);
 
     if (qs[name] === value) {
       delete qs[name];

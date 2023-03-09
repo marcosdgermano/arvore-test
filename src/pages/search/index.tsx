@@ -46,7 +46,9 @@ export const Search = () => {
   useEffect(() => {
     const targetObserver = targetObserverRef.current;
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) {
+      const fullContentSize = document.getElementById('root')?.offsetHeight;
+      const fullSizePage = fullContentSize && fullContentSize === document.body.offsetHeight
+      if (entry?.isIntersecting && fullSizePage) {
         fetch(true);
       }
     });
@@ -93,7 +95,6 @@ export const Search = () => {
             </StyledItem>
           ))}
         </StyledList>
-        { loading && <div>loading</div> }
       </ListWrapper>
       </PageWrapper>
       <span ref={targetObserverRef} style={{ width: '100%' }} />
