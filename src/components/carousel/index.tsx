@@ -11,7 +11,7 @@ export interface CarouselProps {
 
 export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): JSX.Element => {
   const [books, setBooks] = useState<BookEntity[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const carouselRef = useRef<HTMLUListElement>(null);
 
@@ -36,7 +36,15 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
 
   if (loading) return <div>loading</div>;
 
-  if (error) return <div>error</div>;
+  if (error){
+    return (
+      <Error>
+        <p>
+        Failed to load carousel
+        </p>
+      </Error>
+    );  
+  };
 
   function move(side: -1 | 1) {
     const shelf = carouselRef.current;
@@ -54,15 +62,15 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
         <CarouselWrapper>
           <StyledButton onClick={() => move(-1)}>
             <img src="/public/assets/arrow-button.png"/>
-          </StyledButton>
-          <CardsWrapper key={searchTerm} ref={carouselRef}>
-            { books.map(card => (
-              <ListItem key={card.id}>
-                <BookImg src={getImgLink(card)} />
-              </ListItem>
-            )) }
-          </CardsWrapper>
-          <StyledButton onClick={() => move(1)}>
+            </StyledButton>
+            <CardsWrapper key={searchTerm} ref={carouselRef}>
+              { books.map(card => (
+                <ListItem key={card.id}>
+                  <BookImg src={getImgLink(card)} />
+                </ListItem>
+              )) }
+            </CardsWrapper>
+            <StyledButton onClick={() => move(1)}>
             <img style={{ transform: 'scaleX(-1)' }} src="/public/assets/arrow-button.png"/>
           </StyledButton>
         </CarouselWrapper>
@@ -72,7 +80,7 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
 };
 
 type StyleProps = {
-  isHighlighted: boolean
+  isHighlighted?: boolean
 }
 
 const BookImg = styled.img`
@@ -160,6 +168,18 @@ const SectionWrapper = styled.div`
   @media (max-width: 541px) {
     width: auto;
     padding: 0;
+  }
+`;
+
+const Error = styled.div`
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > p {
+    font-size: 26px;
+    font-weight: bold;
   }
 `;
 

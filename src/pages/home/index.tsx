@@ -5,7 +5,7 @@ import Carousel from '@components/carousel';
 export const Home = () => {
   return (
     <PageWrapper>
-      <Carousel searchTerm='aventura' />
+      <Carousel searchTerm='' />
       <Carousel searchTerm='destaques' isHighlighted />
       <Carousel searchTerm='ação' />
     </PageWrapper>

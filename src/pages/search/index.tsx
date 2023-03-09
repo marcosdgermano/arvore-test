@@ -12,7 +12,7 @@ import { BookEntity } from 'types/books';
 export const Search = () => {
   const history = useHistory();
   const [books, setBooks] = useState<BookEntity[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const targetObserverRef = useRef<HTMLSpanElement>(null);
@@ -60,7 +60,13 @@ export const Search = () => {
 
   if (loading && !books.length) return <div>loading</div>;
 
-  if (error) return <div>error</div>;
+  if (error) return (
+    <Error>
+      <p>
+        Failed to load resources
+      </p>
+    </Error>
+  );
 
   return (
     <>
@@ -186,6 +192,19 @@ const StyledButton = styled.button<{ primary?: boolean }>`
     & > img {
       padding-right: 15px;
     }
+  }
+`;
+
+const Error = styled.div`
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  & > p {
+    font-size: 26px;
+    font-weight: bold;
   }
 `;
 
