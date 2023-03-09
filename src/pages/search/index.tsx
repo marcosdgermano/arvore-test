@@ -18,6 +18,7 @@ export const Search = () => {
   const targetObserverRef = useRef<HTMLSpanElement>(null);
   const { selectedFilters, allFilters } = useFilters(history.location.search);
   const searchTerm = queryString.parse(history.location.search).q as string || '';
+  const hasSelectedFilters = !!Object.keys(selectedFilters).length;
 
   const fetch = async (refetch?: boolean) => {
     if(loading) return
@@ -73,9 +74,11 @@ export const Search = () => {
           <img src='/public/assets/stroke.png' />
           FILTRAR
         </StyledButton>
-        <StyledButton onClick={cleanFilters}>
-          LIMPAR FILTRO
-        </StyledButton>
+        { hasSelectedFilters && (
+          <StyledButton onClick={cleanFilters}>
+            LIMPAR FILTRO
+          </StyledButton>
+        )}
         <h2>Resultados para "{ searchTerm }"</h2>
         <StyledList>
           {books.map((card, index) => (
