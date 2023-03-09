@@ -6,10 +6,11 @@ import Checkbox from '@components/checkbox';
 import { FilterObject } from "types/filters";
 
 export interface FiltersProps {
-  filters: FilterObject[]
+  filters: FilterObject[],
+  cleanFilters: () => void
 }
 
-const Filters = ({ filters }: FiltersProps): JSX.Element => {
+const Filters = ({ filters, cleanFilters }: FiltersProps): JSX.Element => {
   const history = useHistory();
   const hasSelectedFilters = filters.some(filter => filter.selectedValue);
 
@@ -27,7 +28,7 @@ const Filters = ({ filters }: FiltersProps): JSX.Element => {
 
   return (
     <>
-      {hasSelectedFilters && <CleanButton href="/search">LIMPAR FILTROS<span>X</span></CleanButton>}
+      {hasSelectedFilters && <CleanButton onClick={cleanFilters}>LIMPAR FILTROS<span>X</span></CleanButton>}
       {filters.map((filter, index) => (
         <FilterWrapper key={index}>
           <Label>{ filter.display }</Label>

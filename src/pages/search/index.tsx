@@ -67,7 +67,7 @@ export const Search = () => {
     <PageWrapper>
       <FiltersWrapper>
         <h2>Filtros</h2>
-        <Filters filters={allFilters} />
+        <Filters filters={allFilters} cleanFilters={cleanFilters} />
       </FiltersWrapper>
       <ListWrapper>
         <StyledButton primary onClick={() => setVisible(true)}>
