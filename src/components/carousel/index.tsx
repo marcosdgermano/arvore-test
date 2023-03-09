@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { capitalizeFirstLetter, getImgLink } from '@utils/helpers';
 import { requestBooks } from '@services/books';
 import { BookEntity } from 'types/books';
+import Loading from '@components/loading';
 
 export interface CarouselProps {
   searchTerm: string,
@@ -34,8 +35,6 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
     fetch();
   }, [searchTerm])
 
-  if (loading) return <div>loading</div>;
-
   if (error){
     return (
       <Error>
@@ -56,26 +55,29 @@ export const Carousel = ({ searchTerm, isHighlighted = false }: CarouselProps): 
   }
 
   return (
-    <Row isHighlighted={isHighlighted}>
-      <SectionWrapper>
-        <Title isHighlighted={isHighlighted}>{capitalizeFirstLetter(searchTerm)}</Title>
-        <CarouselWrapper>
-          <StyledButton onClick={() => move(-1)}>
-            <img src="/public/assets/arrow-button.png"/>
+    <>
+      { loading && <Loading /> }
+      <Row isHighlighted={isHighlighted}>
+        <SectionWrapper>
+          <Title isHighlighted={isHighlighted}>{capitalizeFirstLetter(searchTerm)}</Title>
+          <CarouselWrapper>
+            <StyledButton onClick={() => move(-1)}>
+              <img src="/public/assets/arrow-button.png"/>
+              </StyledButton>
+              <CardsWrapper key={searchTerm} ref={carouselRef}>
+                { books.map(card => (
+                  <ListItem key={card.id}>
+                    <BookImg src={getImgLink(card)} />
+                  </ListItem>
+                )) }
+              </CardsWrapper>
+              <StyledButton onClick={() => move(1)}>
+              <img style={{ transform: 'scaleX(-1)' }} src="/public/assets/arrow-button.png"/>
             </StyledButton>
-            <CardsWrapper key={searchTerm} ref={carouselRef}>
-              { books.map(card => (
-                <ListItem key={card.id}>
-                  <BookImg src={getImgLink(card)} />
-                </ListItem>
-              )) }
-            </CardsWrapper>
-            <StyledButton onClick={() => move(1)}>
-            <img style={{ transform: 'scaleX(-1)' }} src="/public/assets/arrow-button.png"/>
-          </StyledButton>
-        </CarouselWrapper>
-      </SectionWrapper>
-    </Row>
+          </CarouselWrapper>
+        </SectionWrapper>
+      </Row>
+    </>
   );
 };
 

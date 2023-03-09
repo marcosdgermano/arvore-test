@@ -8,6 +8,7 @@ import FiltersModal from '@components/filters/modal';
 import { requestBooks } from '@services/books';
 import { useFilters } from '@services/filters';
 import { BookEntity } from 'types/books';
+import Loading from '@components/loading';
 
 export const Search = () => {
   const history = useHistory();
@@ -19,6 +20,10 @@ export const Search = () => {
   const { selectedFilters, allFilters } = useFilters(history.location.search);
   const searchTerm = queryString.parse(history.location.search).q as string || '';
   const hasSelectedFilters = !!Object.keys(selectedFilters).length;
+
+  useEffect(() => {
+    console.log(loading);
+  }, [loading])
 
   const fetch = async (refetch?: boolean) => {
     if(loading) return
@@ -58,8 +63,6 @@ export const Search = () => {
     history.push(`${history.location.pathname}?${queryString.stringify({ q: searchTerm })}`);
   }
 
-  if (loading && !books.length) return <div>loading</div>;
-
   if (error) return (
     <Error>
       <p>
@@ -70,6 +73,7 @@ export const Search = () => {
 
   return (
     <>
+    { loading && <Loading />}
     <PageWrapper>
       <FiltersWrapper>
         <h2>Filtros</h2>
